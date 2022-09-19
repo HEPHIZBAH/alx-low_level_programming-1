@@ -1,17 +1,17 @@
 #include "main.h"
-
 /**
- * _puts - check the code for the School students.
- * @str: validate the character
- * Return: Always 0.
+ * _puts - prints a string followed by a new line
+ *
+ * @str: char to check
+ * Description: This will print a string with a new line to stdout
+ *
+ * Return: 0 is success
  */
 void _puts(char *str)
 {
-	int i;
+	int string;
 
-	for (i = 0; str[i] != '\0' ; i++)
-	{
-		_putchar(str[i]);
-	}
+	for (string = 0; *(str + string) != '\0'; string++)
+		_putchar(*(str + string));
 	_putchar('\n');
 }
