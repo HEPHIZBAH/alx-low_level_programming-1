@@ -1,64 +1,37 @@
+#include "holberton.h"
 #include "main.h"
-
 /**
- * binary_to_uint - converts binary num to uint
- * Return: uint
- * @b: binary number as string
+ * binary_to_uint - convert binary to decimal.
+ * @b: the binary number in string format
+ * Description: convert binary to decimal
+ * section header: the header of this function is header.h
+ * Return: this return the convert number.
  */
+
 unsigned int binary_to_uint(const char *b)
 {
-	unsigned int dec, size, i, exp;
+	unsigned int result, base;
+	int i;
+
+	result = 0;
+	i = 0;
+	base = 1;
 
 	if (!b)
 		return (0);
-	size = _strlen(b);
-	i = 0;
-	dec = 0;
-	exp = size - 1;
 
-	while (b[i])
+	while (*(b + i))
 	{
-		if (b[i] == '1')
-			dec += power(2, exp);
-		else if (b[i] != '0')
+		if (*(b + i) != '0' && *(b + i) != '1')
 			return (0);
-		exp--;
 		i++;
 	}
-	return (dec);
-}
-/**
- * _strlen - len of string.
- * @s: is a pointer to a char
- * Return: len.
- */
-
-unsigned int _strlen(const char *s)
-{
-	unsigned int i = 0;
-
-	while (*(s + i) != '\0')
+	for (i--; i >= 0; i--)
 	{
-		i++;
+		if (*(b + i) == '1')
+			result = result + base;
+		base = base * 2;
 	}
-	return (i);
-}
-/**
- * power - power of base
- * @base: base
- * @exp: exponent
- * Return: base raised to exp
- */
-unsigned int power(unsigned int base, unsigned int exp)
-{
-	unsigned int i = 0;
-	unsigned int raised = 1;
 
-
-	if (exp == 0)
-		return (1);
-
-	for (i = 0; i < exp; i++)
-		raised = raised * base;
-	return (raised);
+	return (result);
 }
